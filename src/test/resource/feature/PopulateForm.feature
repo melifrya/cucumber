@@ -18,13 +18,3 @@ Feature: Populate the form
     And I select headache
     And I click Submit
     Then I see not found page
-
-   # Scenario Outline: New options are available for user
-    #  Given I am on Symbiote-app site
-    #  When I click on <option>
-    #  Then I see <text> near options
-
-    #  Examples:
-    #  | option | text |
-    #  | toggleAllTech | Currently Enabled |
-    #  | toggleAllVapo | Currently Enabled |
