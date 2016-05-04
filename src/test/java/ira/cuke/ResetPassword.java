@@ -18,7 +18,7 @@ public class ResetPassword {
 
     @Given("^I open Password Reset page as user with forgotten password$")
     public void IamOnPasswordResetPage() throws Throwable {
-        driver.navigate().to("https://test.com");
+        driver.navigate().to("http://test.com");
         //System.out.println("Open main page; ");
         driver.findElement(By.className("login-page-forgot")).click();
         //System.out.println("clicked on forgotten passowrd link; ");
@@ -45,7 +45,14 @@ public class ResetPassword {
 
     @Then("^see input for security code$")
     public void seeInputForSecurityCode() throws Throwable {
-        driver.findElements(By.id("securityCode"));
+
+        Thread.sleep(5000);  // time for page to load
+        if (driver.findElements(By.id("securityCode")).size() != 0) {
+            System.out.println("element exists");
+            driver.findElement(By.id("securityCode")).sendKeys("text");
+        }
+        else System.out.println("element does nor exists");
+
     }
 
     @Then("^I close browser$")

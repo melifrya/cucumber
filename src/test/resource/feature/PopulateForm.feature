@@ -13,7 +13,6 @@ Feature: Populate the form
     And I select technology
     And I select vaporize
     And I select power
-    And I click enable sith
     And I select villain
     And I select headache
     And I click Submit

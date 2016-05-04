@@ -18,12 +18,12 @@ public class SampleDef {
         driver.get("https://symbiote-app.herokuapp.com/practice");
         Thread.sleep(5000);
 
-        System.out.println("given step");
+        System.out.println("given step; ");
     }
 
     @When("^this is when step$")
     public void thisIsWhenStep() throws Throwable {
-        System.out.println("when step");
+        System.out.println("when step; ");
     }
 
     @Then("^this is then step$")
