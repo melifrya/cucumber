@@ -9,13 +9,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.List;
 
 public class PopulateForm {
 
-    WebDriver driver = new FirefoxDriver();
+    private final WebDriver driver = new FirefoxDriver();
 
     @Given("^I am on Symbiote-app site$")
     public void iAmOnSymbioteAppSite() throws Throwable {
@@ -32,7 +33,7 @@ public class PopulateForm {
         driver.findElement(By.id("email")).sendKeys("Email@test.qa");
     }
 
-    @And("^I enter date of birh$")
+    @And("^I enter date of birth$")
     public void iEnterDateOfBirh() throws Throwable {
         driver.findElement(By.id("dob")).sendKeys("04/11/2016");
     }
@@ -62,16 +63,8 @@ public class PopulateForm {
 
     @And("^I select power$")
     public void iSelectPower() throws Throwable {
-        /*Select selectPW = new Select(driver.findElement(By.id("sith")));
-        System.out.println("text here bla bla - "+selectPW);
-        //selectPW.deselectAll();
-        selectPW.selectByVisibleText("Vicious Slash");
-        WebElement selectedOption = selectPW.getFirstSelectedOption();
-        System.out.println("Selected option! - " + selectedOption);
-        */
 
         driver.findElement(By.id("toggleSith")).click();
-        //Thread.sleep(5000);  // time for page to load
         new Select(driver.findElement(By.id("sith"))).selectByIndex(2);
 
     }
@@ -93,7 +86,10 @@ public class PopulateForm {
 
     @Then("^I see not found page$")
     public void iSeeNotFoundPage() throws Throwable {
-        Thread.sleep(5000);  // time for page to load
+
+        WebElement myDynamicElement = (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.tagName("h1")));
+
         Assert.assertEquals("Not Found", driver.findElement(By.tagName("h1")).getText());
         driver.quit();
     }

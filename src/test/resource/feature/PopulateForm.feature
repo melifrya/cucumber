@@ -7,7 +7,7 @@ Feature: Populate the form
     Given I am on Symbiote-app site
     When I enter username
     And I enter email
-    And I enter date of birh
+    And I enter date of birth
     And I enter password and confirm password
     And I enter description
     And I select technology
