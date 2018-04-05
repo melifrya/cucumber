@@ -1,7 +1,8 @@
-package ira.cuke;
+package ira.cuke.runners;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
+import ira.cuke.DriverUtils;
 import org.junit.AfterClass;
 import org.junit.runner.RunWith;
 
@@ -9,8 +10,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resource",
         format = {"pretty", "json:target/json/output.json", "html:target/html/"},
-        tags = {"@testPage"},
-        glue = "ira.cuke"
+        glue = "ira.cuke",
+        tags = {"@testPage"}
 )
 public class RunnerTest {
 

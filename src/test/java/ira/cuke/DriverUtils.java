@@ -9,6 +9,8 @@ public class DriverUtils {
 
     public static WebDriver getDriver() {
 
+        System.setProperty("webdriver.gecko.driver", "/path_to_the_driver/geckodriver");
+
         if (driver == null) {
             driver = new FirefoxDriver();
         }

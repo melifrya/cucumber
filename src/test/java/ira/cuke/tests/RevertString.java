@@ -1,4 +1,4 @@
-package ira.cuke;
+package ira.cuke.tests;
 
 import org.junit.*;
 
