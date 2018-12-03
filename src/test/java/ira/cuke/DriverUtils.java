@@ -1,20 +1,35 @@
 package ira.cuke;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverUtils {
 
     private static WebDriver driver;
 
-    public static WebDriver getDriver() {
+    public DriverUtils() {
+        driver = new FirefoxDriver();
+    }
 
-        System.setProperty("webdriver.gecko.driver", "/path_to_the_driver/geckodriver");
+    public static WebDriver createDriver() {
+        return getFirefoxDriver();
+    }
+
+    public static WebDriver getFirefoxDriver() {
+
+        System.setProperty("webdriver.gecko.driver", "/Users/melifrya/Tools/geckodriver");
 
         if (driver == null) {
             driver = new FirefoxDriver();
-        }
-        return driver;
+            return driver;
+        } else return driver;
     }
 
+    public static void closeDriver() {
+
+        if (driver != null) {
+            driver.close();
+        }
+    }
 }
