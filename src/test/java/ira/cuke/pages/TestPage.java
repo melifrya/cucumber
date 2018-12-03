@@ -1,6 +1,5 @@
 package ira.cuke.pages;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -12,11 +11,17 @@ public class TestPage extends BasePage {
     private String TEST_PAGE_URL = "http://toolsqa.com/automation-practice-form/";
 
     private final By FIRST_NAME = By.cssSelector("[name=\"firstname\"]");
+
     private final By LAST_NAME = By.cssSelector("[name=\"lastname\"]");
+
     private final By MALE_SEX = By.id("sex-0");
+
     private final By FEMALE_SEX = By.id("sex-1");
+
     private final By YEAR_OF_EXPERIENCE = By.cssSelector(".control-group [name='exp']");
+
     private final By CONTINENTS = By.id("continents");
+
 
     public void openTestPage() {
         openUrl(TEST_PAGE_URL);
@@ -80,7 +85,8 @@ public class TestPage extends BasePage {
     public void selectContinent(String value) {
 
         WebElement dropdown = findElement(CONTINENTS);
-        new Select(dropdown).selectByVisibleText(value);
+        Select select = new Select(dropdown);
+        select.selectByVisibleText(value);
     }
 
     public String getSelectContinent() {

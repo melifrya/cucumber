@@ -10,7 +10,7 @@ import java.util.List;
 
 public class BasePage {
 
-    private final WebDriver driver = DriverUtils.getDriver();
+    private final WebDriver driver = DriverUtils.getFirefoxDriver();
 
     public void openUrl(String url) {
         driver.navigate().to(url);
@@ -18,7 +18,7 @@ public class BasePage {
 
     public WebElement findElement(By str) {
         WebElement element = driver.findElement(str);
-        scrollIntoView(element);
+        scrollIntoViewDownVisible(element);
         return element;
     }
 
@@ -31,4 +31,8 @@ public class BasePage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
+    public void scrollIntoViewDownVisible(WebElement element) {
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(false);", element);
+    }
 }

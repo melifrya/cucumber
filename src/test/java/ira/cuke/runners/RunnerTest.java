@@ -15,8 +15,8 @@ import org.junit.runner.RunWith;
 )
 public class RunnerTest {
 
-    @AfterClass
+    /*@AfterClass
     public static void tearDown() {
-        DriverUtils.getDriver().close();
-    }
+        DriverUtils.getFirefoxDriver().close();
+    }*/
 }
