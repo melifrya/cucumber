@@ -16,14 +16,30 @@ public class BasePage {
         driver.navigate().to(url);
     }
 
-    public WebElement findElement(By str) {
-        WebElement element = driver.findElement(str);
+    public WebElement findElement(By selector) {
+        WebElement element = driver.findElement(selector);
         scrollIntoViewDownVisible(element);
         return element;
     }
 
-    public List<WebElement> findElements(By str) {
-        return driver.findElements(str);
+    public List<WebElement> findElements(By selector) {
+        return driver.findElements(selector);
+    }
+
+    public String getElementText(By selector) {
+        return findElement(selector).getText();
+    }
+
+    public String getValueAttribute(By selector){
+        return getValueAttribute(findElement(selector));
+    }
+
+    public String getValueAttribute(WebElement element){
+        return element.getAttribute("value");
+    }
+
+    public void clickOnElement(By selector){
+        findElement(selector).click();
     }
 
     public void scrollIntoView(WebElement element) {
