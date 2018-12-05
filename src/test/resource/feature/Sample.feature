@@ -5,3 +5,5 @@ Feature: This is sample of the feature
     Given this is given step
     When this is when step
     Then this is then step
+    And this is and step
+    But this is but step
