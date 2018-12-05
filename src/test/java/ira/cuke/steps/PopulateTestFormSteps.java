@@ -1,5 +1,6 @@
 package ira.cuke.steps;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -60,5 +61,23 @@ public class PopulateTestFormSteps {
     public void iSeeContinentsWithSelectedValue(String expValue) throws Throwable {
         TestPage testPage = new TestPage();
         Assert.assertEquals("Unexpected Continents value ", expValue, testPage.getSelectContinent());
+    }
+
+    @Then("^Continent control is displayed with selected \"([^\"]*)\" value$")
+    public void continentControlIsDisplayedWithSelectedValue(String expValue) throws Throwable {
+        TestPage testPage = new TestPage();
+        Assert.assertEquals("Unexpected Continents value ", expValue, testPage.getSelectContinent());
+    }
+
+    @When("^I select one of the continents from a list$")
+    public void iSelectOneOfTheContinentsFromAList() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Then("^Continent control is displayed with this value$")
+    public void continentControlIsDisplayedWithThisValue() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
     }
 }

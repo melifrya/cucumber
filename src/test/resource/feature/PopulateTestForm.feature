@@ -1,6 +1,8 @@
 @testPage
 Feature: Populate test form page
 
+  Set, select and get elements info from a page
+
   Scenario: Set and get a first name
     Given I have opened Test page
     When I set First name to "Sam"
@@ -21,7 +23,7 @@ Feature: Populate test form page
       | 1    |
       | 7    |
 
-  Scenario: Select continent from a list
+  Scenario: Select specific continent from a list
     Given I have opened Test page
     When I select "Australia" as continent
-    Then I see Continents with selected "Australia" value
+    Then Continent control is displayed with selected "Australia" value
