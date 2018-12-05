@@ -5,12 +5,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
 public class BasePage {
 
     private final WebDriver driver = DriverUtils.getFirefoxDriver();
+
+    public BasePage() {
+        PageFactory.initElements(DriverUtils.getFirefoxDriver(), this);
+    }
 
     public void openUrl(String url) {
         driver.navigate().to(url);
