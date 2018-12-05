@@ -1,7 +1,11 @@
 package ira.cuke.pages;
 
+import ira.cuke.DriverUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
@@ -10,88 +14,97 @@ public class TestPage extends BasePage {
 
     private String TEST_PAGE_URL = "http://toolsqa.com/automation-practice-form/";
 
-    private final By FIRST_NAME = By.cssSelector("[name=\"firstname\"]");
+    private final String FIRST_NAME = "[name=\"firstname\"]";
 
-    private final By LAST_NAME = By.cssSelector("[name=\"lastname\"]");
+    private final String LAST_NAME = "[name=\"lastname\"]";
 
-    private final By MALE_SEX = By.id("sex-0");
+    private final String MALE_SEX = "sex-0";
 
-    private final By FEMALE_SEX = By.id("sex-1");
+    private final String FEMALE_SEX = "sex-1";
 
     private final By YEAR_OF_EXPERIENCE = By.cssSelector(".control-group [name='exp']");
 
-    private final By CONTINENTS = By.id("continents");
+    private final String CONTINENTS = "continents";
 
+    @FindBy(how = How.CSS, using = FIRST_NAME)
+    private WebElement firstNameElement;
 
-    public void openTestPage() {
+    @FindBy(how = How.CSS, using = LAST_NAME)
+    private WebElement lastNameElement;
+
+    @FindBy(how = How.ID, using = MALE_SEX)
+    private WebElement maleSexRadioButton;
+
+    @FindBy(how = How.ID, using = FEMALE_SEX)
+    private WebElement femaleSexRadioButton;
+
+    @FindBy(how = How.ID, using = CONTINENTS)
+    private WebElement continentsDropDown;
+
+    public TestPage() {
+        PageFactory.initElements(DriverUtils.getFirefoxDriver(), this);
+    }
+
+    public TestPage openTestPage() {
         openUrl(TEST_PAGE_URL);
+        return this;
     }
 
-    private WebElement findFirstElement() {
-        return findElement(FIRST_NAME);
-    }
-
-    public void setFirstName(String value) {
-        findFirstElement().sendKeys(value);
+    public TestPage setFirstName(String value) {
+        firstNameElement.sendKeys(value);
+        return this;
     }
 
     public String getFirstName() {
-        return findFirstElement().getAttribute("value");
+        return getValueAttribute(firstNameElement);
     }
 
-    public void setLastName(String value) {
-        findElement(LAST_NAME).sendKeys(value);
+    public TestPage setLastName(String value) {
+        lastNameElement.sendKeys(value);
+        return this;
     }
 
     public String getLastName() {
-        return findElement(LAST_NAME).getAttribute("value");
+        return getValueAttribute(lastNameElement);
     }
 
-    public void setMaleSex() {
-        findElement(MALE_SEX).click();
+    public TestPage setMaleSex() {
+        maleSexRadioButton.click();
+        return this;
     }
 
-    public void setFemaleSex() {
-        findElement(FEMALE_SEX).click();
+    public TestPage setFemaleSex() {
+        femaleSexRadioButton.click();
+        return this;
     }
 
-    public void selectYearOfExperience(String value) {
+    private List<WebElement> getYearOfExperienceList() {
+        return findElements(YEAR_OF_EXPERIENCE);
+    }
 
-        List<WebElement> radioButtons = findElements(YEAR_OF_EXPERIENCE);
+    public TestPage selectYearOfExperience(String value) {
 
-        for (WebElement radioButton : radioButtons) {
-            if (radioButton.getAttribute("value").equalsIgnoreCase(value)) {
-                radioButton.click();
-                break;
-            }
-        }
+        //get year of experience as list<WebElements> and filter them by value - if present - click on it
+        getYearOfExperienceList().stream().filter(element -> getValueAttribute(element).equalsIgnoreCase(value)).findFirst().ifPresent(WebElement::click);
+
+        return this;
     }
 
     public String getSelectedYearOfExperience() {
 
-        String selected = "";
-        List<WebElement> radioButtons = findElements(YEAR_OF_EXPERIENCE);
-
-        for (WebElement radioButton : radioButtons) {
-            if (radioButton.isSelected()) {
-                selected = radioButton.getAttribute("value");
-                break;
-            }
-        }
-
-        return selected;
+        return getYearOfExperienceList().stream().filter(WebElement::isSelected).findFirst().map(this::getValueAttribute).orElse("");
     }
 
-    public void selectContinent(String value) {
+    public TestPage selectContinent(String value) {
 
-        WebElement dropdown = findElement(CONTINENTS);
-        Select select = new Select(dropdown);
+        Select select = new Select(continentsDropDown);
         select.selectByVisibleText(value);
+
+        return this;
     }
 
     public String getSelectContinent() {
 
-        WebElement dropdown = findElement(CONTINENTS);
-        return new Select(dropdown).getFirstSelectedOption().getText();
+        return new Select(continentsDropDown).getFirstSelectedOption().getText();
     }
 }
