@@ -1,7 +1,6 @@
 package ira.cuke;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverUtils {
@@ -12,8 +11,8 @@ public class DriverUtils {
         driver = new FirefoxDriver();
     }
 
-    public static WebDriver createDriver() {
-        return getFirefoxDriver();
+    public static void createDriver() {
+        getFirefoxDriver();
     }
 
     public static WebDriver getFirefoxDriver() {
