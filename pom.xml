@@ -7,7 +7,7 @@
     <groupId>com.cuke</groupId>
     <artifactId>CukeTestProject</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>PageObject</name>
+    <name>Cucumber test project</name>
     <url>http://maven.apache.org</url>
 
     <properties>
