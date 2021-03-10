@@ -1,4 +1,4 @@
-package ira.cuke;
+package cucumber.test;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -17,7 +17,7 @@ public class DriverUtils {
 
     public static WebDriver getFirefoxDriver() {
 
-        System.setProperty("webdriver.gecko.driver", "/Users/melifrya/Tools/geckodriver");
+        System.setProperty("webdriver.gecko.driver", "/Users/melifrya/IdeaProjects/geckodriver");
 
         if (driver == null) {
             driver = new FirefoxDriver();

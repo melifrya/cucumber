@@ -1,6 +1,6 @@
-package ira.cuke.pages;
+package cucumber.test.pages;
 
-import ira.cuke.DriverUtils;
+import cucumber.test.DriverUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -30,15 +30,15 @@ public class BasePage {
         return findElement(selector).getText();
     }
 
-    public String getValueAttribute(By selector){
+    public String getValueAttribute(By selector) {
         return getValueAttribute(findElement(selector));
     }
 
-    public String getValueAttribute(WebElement element){
+    public String getValueAttribute(WebElement element) {
         return element.getAttribute("value");
     }
 
-    public void clickOnElement(By selector){
+    public void clickOnElement(By selector) {
         findElement(selector).click();
     }
 

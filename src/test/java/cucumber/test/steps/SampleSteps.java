@@ -1,7 +1,6 @@
-package ira.cuke.steps;
+package cucumber.test.steps;
 
-import cucumber.api.java.en.*;
-
+import io.cucumber.java.en.*;
 
 public class SampleSteps {
 
